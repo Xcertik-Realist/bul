@@ -1,0 +1,41 @@
+import requests
+import subprocess
+
+def check_license(key):
+    license_url = f"https://github.com/Xcertik-Realist/bul/new/main/check.txt"
+    response = requests.get(license_url)
+    return key in response.text
+
+def main():
+    user_key = input("Enter your license key: ")
+    
+    if check_license(user_key):
+        script_url = "https://github.com/Xcertik-Realist/bul/new/main/bulk.txt"
+        script_response = requests.get(script_url)
+        
+        if script_response.status_code == 200:
+            script_content = script_response.text
+            with open("temp_script.py", "w") as temp_script:
+                temp_script.write(script_content)
+                
+            subprocess.call(["python", "temp_script.py"])
+        else:
+            print("Failed to fetch script.")
+    else:
+        print("Invalid license key.")
+
+if __name__ == "__main__":
+    main()
+This script does the following:
+
+Asks the user for a license key.
+Checks the key against the specified license URL.
+If the key is valid, fetches the script content from the specified URL.
+Writes the fetched script content to a temporary file.
+Executes the temporary script using the subprocess module.
+Remember that this script is a basic example and lacks proper error handling, security measures, and user feedback. It's also important to note that this approach is not a secure way to handle licensing, as it can be easily circumvented. For more secure licensing solutions, consider using third-party libraries or online services that specialize in software licensing.
+
+
+
+
+
