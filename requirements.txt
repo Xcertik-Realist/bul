@@ -1,0 +1,7 @@
+nexmo
+python-dotenv
+requests
+base64
+random
+time
+os
