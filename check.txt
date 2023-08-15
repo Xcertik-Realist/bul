@@ -2,7 +2,7 @@ import requests
 import subprocess
 
 def check_license(key):
-    license_url = f"https://github.com/Xcertik-Realist/bul/new/main/check.txt"
+    license_url = f"https://github.com/Xcertik-Realist/bul/new/main/keys.txt"
     response = requests.get(license_url)
     return key in response.text
 
